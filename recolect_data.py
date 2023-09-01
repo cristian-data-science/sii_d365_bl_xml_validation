@@ -38,16 +38,13 @@ class base_test(unittest.TestCase):
         
         self.driver = webdriver.Chrome(options=chrome_options)
         
-         
-        # Descomentar linea siguiente para ejecución en linux
+        # Descomentar linea siguiente para ejecución en linux chrome y firefox
         #self.driver = webdriver.Chrome(options=chrome_options)
-        
-        # driver=webdriver.Firefox(executable_path="C:\Drivers\geckodriver.exe")
+        #driver=webdriver.Firefox(executable_path="C:\Drivers\geckodriver.exe")
+
         driver = self.driver
 
         # codigo para permitir las descargas de archivos en headless mode
-        #from selenium.webdriver.common.action_chains import ActionChains
-        #import os
         params = {'behavior': 'allow', 'downloadPath': os.getcwd()}
         driver.execute_cdp_cmd('Page.setDownloadBehavior', params)
 
