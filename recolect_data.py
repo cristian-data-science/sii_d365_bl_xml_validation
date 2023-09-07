@@ -15,7 +15,7 @@ import os
 from dotenv import load_dotenv
 
 chrome_options = Options()
-#chrome_options.headless = True
+chrome_options.headless = True
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--allow-running-insecure-content')
@@ -56,12 +56,13 @@ class base_test(unittest.TestCase):
     def test1(self):
         driver = self.driver
         f = funciones_globales(driver)
-        #f.login_blue(os.getenv('url_blue_line'), os.getenv('user_blueline'), os.getenv('pass_blueline'))
-        #f.dte_emitidos(os.getenv('url_dte_emitidos'))
+        f.login_blue(os.getenv('url_blue_line'), os.getenv('user_blueline'), os.getenv('pass_blueline'))
+        f.dte_emitidos(os.getenv('url_dte_emitidos'))
         #f.limpiar_reporte()
 
-        f.login_sii()
-        f.extract_sii()
+        #f.login_extract_sii(os.getenv('url_sii'), os.getenv('rut'), os.getenv('pass_sii'))
+        #f.clean_cross_data()
+        #f.sql_cross(os.getenv('server_sql'), os.getenv('username_sql'), os.getenv('password_sql'), os.getenv('database_sql'))
 
         
         
