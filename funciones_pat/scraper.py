@@ -67,6 +67,22 @@ class funciones_globales():
         download = driver.find_element(By.XPATH, value= '/html/body/fieldset/form/table[3]/tbody/tr[3]/td[2]/a').click()
         sleep(1)
 
+        nombre_xls = "Reporte.xls"
+        nuevo_nombre_csv = "blueline_data.csv"
+        if os.path.exists(nombre_xls):
+            # Lee el archivo XLS utilizando pandas
+            df = pd.read_excel(nombre_xls)
+
+            # Guarda el DataFrame como un archivo CSV
+            df.to_csv(nuevo_nombre_csv, index=False)
+
+            # Renombra el archivo CSV
+            os.rename(nuevo_nombre_csv, "blueline_data.csv")
+
+            print(f"El archivo {nombre_xls} se ha convertido a {nuevo_nombre_csv} y se ha renombrado.")
+        else:
+            print(f"El archivo {nombre_xls} no existe.")
+
 
     def login_extract_sii(self, url, rut, pass_rut):
         print("### Accediendo al SII y extrayendo los datos ###")
@@ -180,7 +196,7 @@ class funciones_globales():
         sii_data['Folio'] = sii_data['Folio'].astype(str)
         sii_data['factura'] = sii_data['Tipo Doc'] + '-' + sii_data['Folio']
 
-        #sii_data.to_excel("sii_.xlsx")
+        sii_data.to_csv("sii_data.csv")
         
        
     
